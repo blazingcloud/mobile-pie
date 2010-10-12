@@ -1,0 +1,24 @@
+<div id="pageTitle">
+		<h1>Edit <%= @place.name:string%></h1>
+</div>
+
+<div id="toolbar">
+    <%= link_to "Back", :action => :show, :id => @place.object %>
+    <%= link_to "Delete", :action => :delete, :id => @place.object %>
+</div>
+
+
+<div id="content">
+    <form method="POST" action="<%= url_for :action => :update %>">
+    	<input type="hidden" name="id" value="<%= @place.object %>"/>
+            <table>
+        		
+                    <tr>
+            			<td class="itemLabel">Name:string: </td>
+              			<td class="itemValue"><input type="text" name="place[name:string]" value="<%= @place.name:string %>"/></td>
+          		    </tr>
+        		
+            </table>
+            <input type="submit" class="standardButton" value="Update" />
+    </form>
+</div>

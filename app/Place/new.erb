@@ -1,0 +1,25 @@
+<div class="pageTitle">
+  <h1>New <%= @place.title %></h1>
+</div>
+
+<div class="toolbar">
+  <div class="leftItem backButton">
+    <a class="cancel" href="<%= url_for :action => :index %>">Cancel</a>
+  </div>
+</div>
+
+<div class="content">
+  <form method="POST" action="<%= url_for :action => :create %>">
+    <input type="hidden" name="id" value="<%= @place.object %>"/>
+    <ul>
+      
+          <li>
+            <label for="place[name:string]" class="fieldLabel">Name:string</label>
+            <input type="text" name="place[name:string]" <%=
+            placeholder("Name:string") %> />
+          </li>
+      
+    </ul>
+    <input type="submit" class="standardButton" value="Create"/>
+  </form>
+</div>

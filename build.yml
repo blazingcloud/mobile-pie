@@ -1,0 +1,17 @@
+sdk: "/Users/sarah/.rvm/gems/ruby-1.8.7-p302@rhodes/gems/rhodes-2.1.0"
+sdkversion: 2.1.0
+name: mobile-pie
+version: 1.0
+vendor: rhomobile
+build: debug
+bbver: 4.6
+wmsdk: "Windows Mobile 6 Professional SDK (ARMV4I)"
+applog: rholog.txt
+iphone:
+  configuration: Debug
+  sdk: iphonesimulator4.0
+  emulator: 4.0.1
+  provisionprofile:
+  codesignidentity:
+  entitlements:
+extensions: ["json", "another-extension"]
