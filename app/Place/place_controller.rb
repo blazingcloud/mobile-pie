@@ -1,9 +1,34 @@
 require 'rho/rhocontroller'
 require 'helpers/browser_helper'
+require 'lib/pie'
+require 'lib/script'
 
 class PlaceController < Rho::RhoController
   include BrowserHelper
 
+
+  def go
+    name = @params['id']
+
+    pie = $pie
+    puts "pie = #{pie.inspect}"
+    puts "id = #{name}"
+    if pie
+      pie.current_place(name) unless name.nil?
+      puts "current place name is #{pie.current_place.name}"
+      puts "current place is #{pie.current_place.description}"
+      if pie.current_place.nil?
+         puts "--- skip out"; return
+      end
+      puts "current links are #{pie.current_place.paths.inspect}"
+      puts "displaying template: #{pie.template.inspect}"
+      #erb pie.template, {}, {:pie => pie}
+      @pie = pie
+    else
+      puts "NO PIE! AAAAAH!"
+    end
+  end
+  
   #GET /Place
   def index
     @places = Place.find(:all)

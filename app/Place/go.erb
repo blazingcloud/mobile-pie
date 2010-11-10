@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title><%= @pie.current_place.name %></title>
+	<style type="text/css" media="screen">
+
+		body {
+			background: #000;
+    }
+
+    div.background {
+			position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%
+    }
+
+		div.background img {
+
+			/* Set up proportionate scaling */
+			width: auto;
+			height: 100%;
+
+			/* Set up positioning */
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
+		div.content {
+			/* This is the only important rule */
+			/* We need our content to show up on top of the background */
+			position: relative;
+
+			/* These have no effect on the functionality */
+			width: <%= System.get_property("screen_width")%>px;
+			margin: 0 auto;
+			background: #fff;
+			padding: 10px;
+			font-family: helvetica, arial, sans-serif;
+			font-size: 12pt;
+			line-height: 14pt;
+			-moz-box-shadow: #000 4px 4px 10px;
+			-webkit-box-shadow: #000 4px 4px 10px;
+    }
+
+	</style>
+</head>
+
+<body>
+<div class="background">
+  <% if @pie.current_image %>
+    <img src="<%= @pie.current_image %>" />
+  <% end %>
+</div>
+<div class="content">
+  <p><%= @pie.current_place.description %></p>
+  <p>
+  <% @pie.current_place.paths.each do |place_name, label| %>
+    <%= "  <a href='#{url_for(:controller =>"Place", :action =>"go")+ "/"+place_name}'>#{label}</a>  "  %>
+  <% end %>
+  </p>
+</div>
+</body>
+
+</html>
